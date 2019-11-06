@@ -1,6 +1,6 @@
 ### Installation
 
-* Go (`go version`: 1.12.7)
+* Go (`go version`: 1.13)
 * Visual Studio Code (1.36)
 * Go VSCode extension (0.11.4)
 * Git (2.22.0)
@@ -28,7 +28,7 @@
 
 ---
 
-### Project: social-network username checker
+### Project: username checker
 
 * Motivation
 * validity, availability of a prospective username
@@ -60,6 +60,7 @@
 * first-class functions
 * object-oriented, but no inheritance
 * built-in concurrency (channels, goroutines)
+* no operator overloading
 * no generics
 
 ---
@@ -678,7 +679,7 @@ go tool cover --html="coverprofile.tmp"
 * fixed-length container of elements of the same type
 * elements are contiguous in memory
 * length is encoded in the array type (e.g. `[3]int`)
-* default value: array full of zero values of the element type
+* zero value: array full of zero values of the element type
 
 ---
 
@@ -697,7 +698,7 @@ moreWords := [...]string { // specify the size is optional
 
 * indexing  (same as for strings)
 * array elements are variables: `&arr[i]` is legal
-* get a slice from an array: `words[...]`
+* get a slice from an array: `words[:]`
 * `copy(dst, src)`
 * ranging over an array
 ```
@@ -756,6 +757,7 @@ words := []string{"foo", "bar", "baz"}
 moreWords := []string {
   "qux",
   "quux", // the last comma is mandatory
+}
 ```
 
 ---
@@ -1048,7 +1050,7 @@ type Writer interface {
 * if possible, take interface types as function parameters, rather than concrete types
 * example
 ```
-type Tree Struct {...}
+type Tree struct {...}
 func (t *Tree) Save(f *os.File) error
 ```
 
@@ -1059,7 +1061,7 @@ func (t *Tree) Save(f *os.File) error
 * if possible, take interface types as function parameters, rather than concrete types
 * example
 ```
-type Tree Struct {...}
+type Tree struct {...}
 func (t *Tree) Save(w io.Writer) error
 ```
 * more flexible
@@ -1089,7 +1091,7 @@ func (f *Foo) Save(w Writer) error // better!
 ### Interface composition
 
 ```
-type ReadWriteCloser {
+type ReadWriteCloser interface {
   Reader
   Writer
   Closer
