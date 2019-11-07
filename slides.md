@@ -1338,6 +1338,7 @@ func main() {
     peelPotatoes()
   }()
   wg.Wait()             // ... for all goroutines to be done
+}
 ```
 
 ---
